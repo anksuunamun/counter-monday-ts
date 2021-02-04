@@ -1,0 +1,16 @@
+.display {
+    background-color: #ae54d8;
+    width: 90%;
+    border-radius: 7px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+    color:  #2b2322;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.displayBlocked {
+    background-color: #7e26a6;
+    color: red;
+}
