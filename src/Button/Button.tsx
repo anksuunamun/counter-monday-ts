@@ -6,21 +6,13 @@ type ButtonPropsType = {
     counterValue: number
     setCounterValue: (value: number) => void
     disabled: boolean
+    onClickHandler: () => void
 }
 
 function Button(props: ButtonPropsType) {
-    function onClickHandler() {
-        if (props.title === 'inc') {
-            if (props.counterValue < 5) {
-                props.setCounterValue(props.counterValue + 1)
-            }
-        } else if (props.title === 'reset') {
-            props.setCounterValue(0)
-        }
-    }
-
     return (
-        <div onClick={onClickHandler} className={`${styles.button} ${props.disabled ? styles.buttonDisabled : ''}`}>
+        <div onClick={props.onClickHandler}
+             className={`${styles.button} ${props.disabled ? styles.buttonDisabled : ''}`}>
             {props.title}
         </div>
     )
