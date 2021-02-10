@@ -1,31 +1,40 @@
-import React, {useState} from 'react'
+import React from 'react'
 import Display from '../Display/Display';
 import Button from '../Button/Button';
 import styles from './Counter.module.css';
 
-type CounterPropsType = {}
+type CounterPropsType = {
+    counterValue: number
+    setCounterValue: (value: number) => void
+    startValue: number
+    maxValue: number
+}
 
 function Counter(props: CounterPropsType) {
-
-    const [counterValue, setCounterValue] = useState<number>(0)
-
     const onIncClickHandler = () => {
-        if (counterValue < 5) {
-            setCounterValue(counterValue + 1)
+        if (props.counterValue < props.maxValue) {
+            props.setCounterValue(props.counterValue + 1)
         }
     }
     const onResetClickHandler = () => {
-        setCounterValue(0)
+        props.setCounterValue(0)
     }
 
     return (
         <div className={styles.counter}>
-            <Display counterValue={counterValue}/>
+            <Display counterValue={props.counterValue}
+                     maxValue={props.maxValue}/>
             <div className={styles.buttonWrapper}>
-                <Button title={'inc'} counterValue={counterValue} setCounterValue={setCounterValue}
-                        disabled={counterValue === 5} onClickHandler={onIncClickHandler}/>
-                <Button title={'reset'} counterValue={counterValue} setCounterValue={setCounterValue}
-                        disabled={counterValue === 0} onClickHandler={onResetClickHandler}/>
+                <Button title={'inc'}
+                        counterValue={props.counterValue}
+                        setCounterValue={props.setCounterValue}
+                        disabled={props.counterValue === props.maxValue}
+                        onClickHandler={onIncClickHandler}/>
+                <Button title={'reset'}
+                        counterValue={props.counterValue}
+                        setCounterValue={props.setCounterValue}
+                        disabled={props.counterValue === props.startValue}
+                        onClickHandler={onResetClickHandler}/>
             </div>
 
         </div>
