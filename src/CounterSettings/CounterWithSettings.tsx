@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import styles from './CounterSettings.module.css';
+import styles from './CounterWithSettings.module.css';
 import Display from '../Display/Display';
 import Button from '../Button/Button';
 
@@ -61,7 +61,6 @@ function CounterWithSettings(props: CounterWithSettingsPropsType) {
         }
         setStartValue(startValue)
     }
-    //Moved from Counter.tsx
     const onIncClickHandler = () => {
         if (props.counterValue < props.maxValue) {
             props.setCounterValue(props.counterValue + 1)
@@ -91,18 +90,13 @@ function CounterWithSettings(props: CounterWithSettingsPropsType) {
             <div className={styles.buttonWrapper}>
                 {props.isSetModeDisplay
                     ? <Button title={'set'}
-                              counterValue={props.counterValue}
-                              setCounterValue={props.setCounterValue}
                               disabled={!props.isSetMode || props.error}
                               onClickHandler={onSetClickHandler}/>
-                    : <><Button title={'inc'}
-                                counterValue={props.counterValue}
-                                setCounterValue={props.setCounterValue}
+                    : <>
+                        <Button title={'inc'}
                                 disabled={props.counterValue === props.maxValue}
                                 onClickHandler={onIncClickHandler}/>
                         <Button title={'reset'}
-                                counterValue={props.counterValue}
-                                setCounterValue={props.setCounterValue}
                                 disabled={props.counterValue === props.startValue}
                                 onClickHandler={onResetClickHandler}/>
                     </>
