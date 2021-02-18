@@ -23,6 +23,8 @@ function CounterWithSettings(props: CounterWithSettingsPropsType) {
     const [startValue, setStartValue] = useState<number>(props.startValue)
 
     useEffect(() => {
+        setStartValue(props.startValue)
+        setMaxValue(props.maxValue)
     }, [props.maxValue, props.startValue])
 
     const onSetClickHandler = () => {

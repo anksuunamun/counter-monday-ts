@@ -29,6 +29,7 @@ function Display(props: DisplayPropsType) {
 
     let styling = props.counterValue === props.maxValueForDisplay ? styles.displayBlocked : ''
     // let styleForDiv =
+
     return (
         props.isSetModeDisplay
             ? <div className={`${styles.display} ${styles.settingDisplay}`}>

@@ -13,9 +13,6 @@ function App() {
     useEffect(() => {
         let newMaxValue = localStorage.getItem('maxValue')
         newMaxValue && setMaxValue(JSON.parse(newMaxValue))
-        console.log(newMaxValue)
-        newMaxValue && console.log(JSON.parse(newMaxValue))
-        console.log(maxValue)
         let newStartValue = localStorage.getItem('startValue')
         newStartValue && setStartValue(JSON.parse(newStartValue))
     }, [])
@@ -24,6 +21,10 @@ function App() {
         localStorage.setItem('maxValue', maxValue.toString())
         localStorage.setItem('startValue', startValue.toString())
     }, [startValue, maxValue])
+
+    useEffect(() => {
+        setCounterValue(startValue)
+    }, [startValue])
 
     const onMaxChangeHandler = (newMaxValue: number) => {
         setMaxValue(newMaxValue)
