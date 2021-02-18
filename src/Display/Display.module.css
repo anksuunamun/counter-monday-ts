@@ -8,11 +8,13 @@
     font-weight: bold;
     font-size: 1.6em;
     height: 70px;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-auto-rows: 1fr;
+    row-gap: 5px;
     justify-content: center;
     align-items: center;
 }
+
 .displayText {
     font-size: 1em;
     font-weight: normal;
@@ -23,9 +25,6 @@
     color: red;
 }
 
-.inputBlocked {
-    background-color: red;
-}
 
 .settingDisplay div {
     font-size: 0.7em;
@@ -37,7 +36,7 @@
 
 .settingDisplay input {
     width: 80px;
-    border-radius: 7px;
+    border-radius: 4px;
     border-color: #7e26a6;
     text-align: center;
     font-weight: bold;
@@ -47,3 +46,10 @@
     outline: none;
     border: 2px solid #7e26a6;
 }
+
+.inputBlocked {
+    background-color: #ffd1dc;
+    border-color: red !important;
+    border-style: solid;
+}
+
