@@ -85,7 +85,6 @@ function CounterWithSettings(props: CounterWithSettingsPropsType) {
     const onResetClickHandler = () => {
         props.setCounterValue(props.startValue)
     }
-    console.log(props.appMode)
 
     return (
         <div className={styles.counter}>
