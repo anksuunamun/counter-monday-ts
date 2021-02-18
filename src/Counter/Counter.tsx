@@ -8,6 +8,9 @@ type CounterPropsType = {
     setCounterValue: (value: number) => void
     startValue: number
     maxValue: number
+    isSetMode: boolean
+    error: boolean
+    setError: (value: boolean) => void
 }
 
 function Counter(props: CounterPropsType) {
@@ -17,13 +20,18 @@ function Counter(props: CounterPropsType) {
         }
     }
     const onResetClickHandler = () => {
-        props.setCounterValue(0)
+        props.setCounterValue(props.startValue)
     }
 
     return (
         <div className={styles.counter}>
             <Display counterValue={props.counterValue}
-                     maxValue={props.maxValue}/>
+                     maxValue={props.maxValue}
+                     startValue={props.startValue}
+                     isSetMode={props.isSetMode}
+                     error={props.error}
+                     setError={props.setError}
+            />
             <div className={styles.buttonWrapper}>
                 <Button title={'inc'}
                         counterValue={props.counterValue}

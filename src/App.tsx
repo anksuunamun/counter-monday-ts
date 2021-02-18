@@ -6,10 +6,11 @@ import CounterSettings from './CounterSettings/CounterSettings';
 
 
 function App() {
-
-    const [counterValue, setCounterValue] = useState<number>(0)
     const [maxValue, setMaxValue] = useState<number>(5)
     const [startValue, setStartValue] = useState<number>(0)
+    const [counterValue, setCounterValue] = useState<number>(startValue)
+    const [isSetMode, setIsSetMode] = useState<boolean>(false)
+    const [error, setError] = useState<boolean>(false)
 
     const onMaxChangeHandler = (newMaxValue: number) => {
         setMaxValue(newMaxValue)
@@ -24,13 +25,21 @@ function App() {
                      setCounterValue={setCounterValue}
                      maxValue={maxValue}
                      startValue={startValue}
+                     isSetMode={isSetMode}
+                     error={error}
+                     setError={setError}
             />
             <CounterSettings counterValue={counterValue}
                              setCounterValue={setCounterValue}
                              maxValue={maxValue}
                              startValue={startValue}
                              onMaxChangeHandler={onMaxChangeHandler}
-                             onStartChangeHandler={onStartChangeHandler}/>
+                             onStartChangeHandler={onStartChangeHandler}
+                             isSetMode={isSetMode}
+                             setIsSetMode={setIsSetMode}
+                             error={error}
+                             setError={setError}
+            />
         </div>
     );
 }

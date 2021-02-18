@@ -5,7 +5,7 @@
     padding-top: 20px;
     padding-bottom: 20px;
     text-align: center;
-    color: #2b2322;
+    color: white;
     font-weight: bold;
     font-size: 1.5em;
 }
@@ -13,4 +13,29 @@
 .displayBlocked {
     background-color: #7e26a6;
     color: red;
+}
+
+.inputBlocked {
+    background-color: red;
+}
+
+.settingDisplay {
+
+}
+
+.settingDisplay div {
+    font-size: 0.7em;
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+}
+
+.settingDisplay input {
+    width: 80px;
+    border-radius: 7px;
+    border-color: #7e26a6;
+}
+
+.settingDisplay input:focus {
+    outline: none;
+    border: 5px solid #7e26a6;
 }
