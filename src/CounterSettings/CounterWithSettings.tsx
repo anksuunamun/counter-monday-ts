@@ -16,16 +16,29 @@ type CounterWithSettingsPropsType = {
     error: boolean
     setError: (value: boolean) => void
     isSetModeDisplay: boolean
+    appMode?: 'single' | 'dual'
+    setIsSetModeDisplay: (value: boolean) => void
 }
 
 function CounterWithSettings(props: CounterWithSettingsPropsType) {
     const [maxValue, setMaxValue] = useState<number>(props.maxValue)
     const [startValue, setStartValue] = useState<number>(props.startValue)
 
+
     useEffect(() => {
         setStartValue(props.startValue)
         setMaxValue(props.maxValue)
     }, [props.maxValue, props.startValue])
+
+    const onSetInSingleModeHandler = () => {
+        if (!props.isSetMode && props.appMode === 'single') {
+            props.setIsSetModeDisplay(true);
+            props.setIsSetMode(true)
+        } else if (props.isSetMode && props.appMode === 'single') {
+            onSetClickHandler()
+            props.setIsSetModeDisplay(false)
+        }
+    }
 
     const onSetClickHandler = () => {
         if (props.isSetMode && !props.error) {
@@ -33,6 +46,7 @@ function CounterWithSettings(props: CounterWithSettingsPropsType) {
             props.onStartChangeHandler(startValue)
             props.setIsSetMode(false)
             props.setCounterValue(startValue)
+            props.setIsSetModeDisplay(false)
         }
     }
     const onInputClickHandler = () => {
@@ -71,6 +85,7 @@ function CounterWithSettings(props: CounterWithSettingsPropsType) {
     const onResetClickHandler = () => {
         props.setCounterValue(props.startValue)
     }
+    console.log(props.appMode)
 
     return (
         <div className={styles.counter}>
@@ -81,7 +96,10 @@ function CounterWithSettings(props: CounterWithSettingsPropsType) {
                      setMaxValue={setMaxValue}
                      setStartValue={setStartValue}
                      onInputClickHandler={onInputClickHandler}
-                     isSetModeDisplay={props.isSetModeDisplay}
+                     isSetModeDisplay={props.appMode === 'single'
+                         ? props.isSetModeDisplay
+                         : props.isSetModeDisplay}
+                     setIsSetModeDisplay={props.setIsSetModeDisplay}
                      onIncorrectInputHandler={onIncorrectInputHandler}
                      setIsSetMode={props.setIsSetMode}
                      error={props.error}
@@ -97,14 +115,18 @@ function CounterWithSettings(props: CounterWithSettingsPropsType) {
                               onClickHandler={onSetClickHandler}/>
                     : <>
                         <Button title={'inc'}
-                                disabled={props.counterValue === props.maxValue || props.error}
+                                disabled={props.counterValue === props.maxValue || props.error || props.isSetModeDisplay}
                                 onClickHandler={onIncClickHandler}/>
                         <Button title={'reset'}
-                                disabled={props.counterValue === props.startValue || props.error}
+                                disabled={props.counterValue === props.startValue || props.error || props.isSetModeDisplay}
                                 onClickHandler={onResetClickHandler}/>
+                        {props.appMode === 'single'
+                            ? <Button title={'set'}
+                                      disabled={!(props.appMode === 'single') || props.error}
+                                      onClickHandler={onSetInSingleModeHandler}/>
+                            : ''}
                     </>
                 }
-
             </div>
 
         </div>

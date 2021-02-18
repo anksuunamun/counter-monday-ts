@@ -11,6 +11,7 @@ function App() {
     const [isSetMode, setIsSetMode] = useState<boolean>(false)
     const [error, setError] = useState<boolean>(false)
     const [appMode, setAppMode] = useState<'single' | 'dual'>('dual')
+    const [isSetModeDisplay, setIsSetModeDisplay] = useState<boolean>(false)
 
     useEffect(() => {
         let newMaxValue = localStorage.getItem('maxValue')
@@ -36,6 +37,7 @@ function App() {
     }
     const onSingleModeToggle = () => {
         setAppMode('single');
+        setIsSetModeDisplay(false)
     }
     const onDualModeToggle = () => {
         setAppMode('dual');
@@ -57,30 +59,51 @@ function App() {
                     : <Button title={'dual'} disabled={false} onClickHandler={onDualModeToggle}/>}
             </div>
             <div className={'counterWrapper'}>
-                <CounterWithSettings counterValue={counterValue}
-                                     setCounterValue={setCounterValue}
-                                     maxValue={maxValue}
-                                     startValue={startValue}
-                                     onMaxChangeHandler={onMaxChangeHandler}
-                                     onStartChangeHandler={onStartChangeHandler}
-                                     isSetMode={isSetMode}
-                                     setIsSetMode={setIsSetMode}
-                                     error={error}
-                                     setError={setError}
-                                     isSetModeDisplay={true}
-                />
-                <CounterWithSettings counterValue={counterValue}
-                                     setCounterValue={setCounterValue}
-                                     maxValue={maxValue}
-                                     startValue={startValue}
-                                     onMaxChangeHandler={onMaxChangeHandler}
-                                     onStartChangeHandler={onStartChangeHandler}
-                                     isSetMode={isSetMode}
-                                     setIsSetMode={setIsSetMode}
-                                     error={error}
-                                     setError={setError}
-                                     isSetModeDisplay={false}
-                />
+                {appMode === 'dual'
+                    ? <>
+                        <CounterWithSettings counterValue={counterValue}
+                                             setCounterValue={setCounterValue}
+                                             maxValue={maxValue}
+                                             startValue={startValue}
+                                             onMaxChangeHandler={onMaxChangeHandler}
+                                             onStartChangeHandler={onStartChangeHandler}
+                                             isSetMode={isSetMode}
+                                             setIsSetMode={setIsSetMode}
+                                             error={error}
+                                             setError={setError}
+                                             isSetModeDisplay={true}
+                                             setIsSetModeDisplay={setIsSetModeDisplay}
+                        />
+                        <CounterWithSettings counterValue={counterValue}
+                                             setCounterValue={setCounterValue}
+                                             maxValue={maxValue}
+                                             startValue={startValue}
+                                             onMaxChangeHandler={onMaxChangeHandler}
+                                             onStartChangeHandler={onStartChangeHandler}
+                                             isSetMode={isSetMode}
+                                             setIsSetMode={setIsSetMode}
+                                             error={error}
+                                             setError={setError}
+                                             isSetModeDisplay={false}
+                                             setIsSetModeDisplay={setIsSetModeDisplay}
+                        />
+                    </>
+                    : <CounterWithSettings counterValue={counterValue}
+                                           setCounterValue={setCounterValue}
+                                           maxValue={maxValue}
+                                           startValue={startValue}
+                                           onMaxChangeHandler={onMaxChangeHandler}
+                                           onStartChangeHandler={onStartChangeHandler}
+                                           isSetMode={isSetMode}
+                                           setIsSetMode={setIsSetMode}
+                                           error={error}
+                                           setError={setError}
+                                           isSetModeDisplay={isSetModeDisplay}
+                                           appMode={appMode}
+                                           setIsSetModeDisplay={setIsSetModeDisplay}
+
+                    />
+                }
             </div>
         </div>
     );

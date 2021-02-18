@@ -17,6 +17,7 @@ type DisplayPropsType = {
     onMaxChangeHandler?: (value: number) => void
     onStartChangeHandler?: (value: number) => void
     maxValueForDisplay: number
+    setIsSetModeDisplay?: (value: boolean) => void
 }
 
 function Display(props: DisplayPropsType) {
