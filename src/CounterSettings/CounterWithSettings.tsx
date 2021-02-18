@@ -4,7 +4,7 @@ import Display from '../Display/Display';
 import Button from '../Button/Button';
 
 
-type CounterSettingsPropsType = {
+type CounterWithSettingsPropsType = {
     counterValue: number
     setCounterValue: (value: number) => void
     maxValue: number
@@ -15,9 +15,10 @@ type CounterSettingsPropsType = {
     setIsSetMode: (value: boolean) => void
     error: boolean
     setError: (value: boolean) => void
+    isSetModeDisplay: boolean
 }
 
-function CounterSettings(props: CounterSettingsPropsType) {
+function CounterWithSettings(props: CounterWithSettingsPropsType) {
     const [maxValue, setMaxValue] = useState<number>(props.maxValue)
     const [startValue, setStartValue] = useState<number>(props.startValue)
 
@@ -60,6 +61,15 @@ function CounterSettings(props: CounterSettingsPropsType) {
         }
         setStartValue(startValue)
     }
+    //Moved from Counter.tsx
+    const onIncClickHandler = () => {
+        if (props.counterValue < props.maxValue) {
+            props.setCounterValue(props.counterValue + 1)
+        }
+    }
+    const onResetClickHandler = () => {
+        props.setCounterValue(props.startValue)
+    }
 
     return (
         <div className={styles.counter}>
@@ -70,7 +80,7 @@ function CounterSettings(props: CounterSettingsPropsType) {
                      setMaxValue={setMaxValue}
                      setStartValue={setStartValue}
                      onInputClickHandler={onInputClickHandler}
-                     isSetModeDisplay={true}
+                     isSetModeDisplay={props.isSetModeDisplay}
                      onIncorrectInputHandler={onIncorrectInputHandler}
                      setIsSetMode={props.setIsSetMode}
                      error={props.error}
@@ -79,15 +89,29 @@ function CounterSettings(props: CounterSettingsPropsType) {
                      onStartChangeHandler={onStartChangeHandler}
             />
             <div className={styles.buttonWrapper}>
-                <Button title={'set'}
-                        counterValue={props.counterValue}
-                        setCounterValue={props.setCounterValue}
-                        disabled={!props.isSetMode || props.error}
-                        onClickHandler={onSetClickHandler}/>
+                {props.isSetModeDisplay
+                    ? <Button title={'set'}
+                              counterValue={props.counterValue}
+                              setCounterValue={props.setCounterValue}
+                              disabled={!props.isSetMode || props.error}
+                              onClickHandler={onSetClickHandler}/>
+                    : <><Button title={'inc'}
+                                counterValue={props.counterValue}
+                                setCounterValue={props.setCounterValue}
+                                disabled={props.counterValue === props.maxValue}
+                                onClickHandler={onIncClickHandler}/>
+                        <Button title={'reset'}
+                                counterValue={props.counterValue}
+                                setCounterValue={props.setCounterValue}
+                                disabled={props.counterValue === props.startValue}
+                                onClickHandler={onResetClickHandler}/>
+                    </>
+                }
+
             </div>
 
         </div>
     );
 }
 
-export default CounterSettings;
+export default CounterWithSettings;

@@ -1,8 +1,6 @@
 import React, {useState} from 'react';
-
 import './App.css';
-import Counter from './Counter/Counter';
-import CounterSettings from './CounterSettings/CounterSettings';
+import CounterWithSettings from './CounterSettings/CounterWithSettings';
 
 
 function App() {
@@ -21,24 +19,29 @@ function App() {
 
     return (
         <div className="App">
-            <Counter counterValue={counterValue}
-                     setCounterValue={setCounterValue}
-                     maxValue={maxValue}
-                     startValue={startValue}
-                     isSetMode={isSetMode}
-                     error={error}
-                     setError={setError}
+            <CounterWithSettings counterValue={counterValue}
+                                 setCounterValue={setCounterValue}
+                                 maxValue={maxValue}
+                                 startValue={startValue}
+                                 onMaxChangeHandler={onMaxChangeHandler}
+                                 onStartChangeHandler={onStartChangeHandler}
+                                 isSetMode={isSetMode}
+                                 setIsSetMode={setIsSetMode}
+                                 error={error}
+                                 setError={setError}
+                                 isSetModeDisplay={true}
             />
-            <CounterSettings counterValue={counterValue}
-                             setCounterValue={setCounterValue}
-                             maxValue={maxValue}
-                             startValue={startValue}
-                             onMaxChangeHandler={onMaxChangeHandler}
-                             onStartChangeHandler={onStartChangeHandler}
-                             isSetMode={isSetMode}
-                             setIsSetMode={setIsSetMode}
-                             error={error}
-                             setError={setError}
+            <CounterWithSettings counterValue={counterValue}
+                                 setCounterValue={setCounterValue}
+                                 maxValue={maxValue}
+                                 startValue={startValue}
+                                 onMaxChangeHandler={onMaxChangeHandler}
+                                 onStartChangeHandler={onStartChangeHandler}
+                                 isSetMode={isSetMode}
+                                 setIsSetMode={setIsSetMode}
+                                 error={error}
+                                 setError={setError}
+                                 isSetModeDisplay={false}
             />
         </div>
     );
