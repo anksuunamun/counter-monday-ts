@@ -14,35 +14,16 @@ type DisplayPropsType = {
     setIsSetMode?: (value: boolean) => void
     error: boolean
     setError: (value: boolean) => void
+    onMaxChangeHandler?: (value: number) => void
+    onStartChangeHandler?: (value: number) => void
 }
 
 function Display(props: DisplayPropsType) {
     const onMaxChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        if (props.setMaxValue) {
-            props.setMaxValue(Number(e.currentTarget.value))
-            if (Number(e.currentTarget.value) && (Number(e.currentTarget.value) < 0 || Number(e.currentTarget.value) === props.startValue) || (props.startValue && props.startValue > Number(e.currentTarget.value))) {
-                props.setIsSetMode && props.setIsSetMode(false)
-                props.setError(true)
-            } else {
-                props.setIsSetMode && props.setIsSetMode(true)
-                props.setError(false)
-            }
-        }
-
+        props.onMaxChangeHandler && props.onMaxChangeHandler(Number(e.currentTarget.value))
     }
     const onStartChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        if (props.setStartValue) {
-            props.setStartValue(Number(e.currentTarget.value))
-            if (Number(e.currentTarget.value) && (Number(e.currentTarget.value) < 0 || Number(e.currentTarget.value) === props.maxValue) || (props.maxValue && props.maxValue < Number(e.currentTarget.value))) {
-                props.setIsSetMode && props.setIsSetMode(false)
-                props.setError(true)
-            } else {
-                props.setIsSetMode && props.setIsSetMode(true)
-                props.setError(false)
-            }
-        }
-
-
+        props.onStartChangeHandler && props.onStartChangeHandler(Number(e.currentTarget.value))
     }
     useEffect(() => {
     }, [props.isSetMode])

@@ -40,6 +40,26 @@ function CounterSettings(props: CounterSettingsPropsType) {
     const onIncorrectInputHandler = () => {
         props.setIsSetMode(false)
     }
+    const onMaxChangeHandler = (maxValue: number) => {
+        if ((maxValue < 0 || maxValue === startValue) || (startValue > maxValue)) {
+            props.setIsSetMode && props.setIsSetMode(false)
+            props.setError(true)
+        } else {
+            props.setIsSetMode && props.setIsSetMode(true)
+            props.setError(false)
+        }
+        setMaxValue(maxValue)
+    }
+    const onStartChangeHandler = (startValue: number) => {
+        if ((startValue < 0 || startValue === maxValue) || (maxValue < startValue)) {
+            props.setIsSetMode && props.setIsSetMode(false)
+            props.setError(true)
+        } else {
+            props.setIsSetMode && props.setIsSetMode(true)
+            props.setError(false)
+        }
+        setStartValue(startValue)
+    }
 
     return (
         <div className={styles.counter}>
@@ -55,6 +75,8 @@ function CounterSettings(props: CounterSettingsPropsType) {
                      setIsSetMode={props.setIsSetMode}
                      error={props.error}
                      setError={props.setError}
+                     onMaxChangeHandler={onMaxChangeHandler}
+                     onStartChangeHandler={onStartChangeHandler}
             />
             <div className={styles.buttonWrapper}>
                 <Button title={'set'}
@@ -66,6 +88,6 @@ function CounterSettings(props: CounterSettingsPropsType) {
 
         </div>
     );
-};
+}
 
 export default CounterSettings;
