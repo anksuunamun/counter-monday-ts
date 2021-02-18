@@ -114,10 +114,10 @@ function CounterWithSettings(props: CounterWithSettingsPropsType) {
                               onClickHandler={onSetClickHandler}/>
                     : <>
                         <Button title={'inc'}
-                                disabled={props.counterValue === props.maxValue || props.error || props.isSetModeDisplay}
+                                disabled={props.counterValue === props.maxValue || props.error || props.isSetMode || props.isSetModeDisplay}
                                 onClickHandler={onIncClickHandler}/>
                         <Button title={'reset'}
-                                disabled={props.counterValue === props.startValue || props.error || props.isSetModeDisplay}
+                                disabled={props.counterValue === props.startValue || props.error || props.isSetMode || props.isSetModeDisplay}
                                 onClickHandler={onResetClickHandler}/>
                         {props.appMode === 'single'
                             ? <Button title={'set'}
