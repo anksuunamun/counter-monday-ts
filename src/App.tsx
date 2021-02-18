@@ -51,7 +51,7 @@ function App() {
             : 'dual'}'`
 
     return (
-        <div className="App">
+        <div className={`App ${appMode === 'single' ? 'singleMode' : 'dualMode'}`}>
             <div className={'announcement'}>
                 <p>{announcement}</p>
                 {appMode === 'dual'

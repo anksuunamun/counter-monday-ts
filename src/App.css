@@ -10,11 +10,23 @@ body {
     margin: 250px auto;
     min-width: 600px;
     max-width: 800px;
+}
+
+.dualMode {
     display: grid;
     grid-template-rows: 1fr 3fr;
     grid-template-columns: 1fr 1fr;
     grid-template-areas: 'announce announce'
                          'counter counter';
+}
+
+.singleMode {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 3fr;
+    grid-template-areas: 'announce'
+                         'counter';
+
 }
 
 .announcement {
@@ -30,4 +42,11 @@ body {
     grid-template-columns: 1fr 1fr;
     column-gap: 30px;
     grid-area: counter;
+}
+
+.singleMode .counterWrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-area: counter;
+    justify-items: center;
 }

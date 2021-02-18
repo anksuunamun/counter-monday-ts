@@ -54,7 +54,7 @@ function Display(props: DisplayPropsType) {
             : <div
                 className={`${styles.display} ${styling} ${props.isSetMode && styles.displayText} ${props.error ? styles.displayBlocked : ''}`}>
                 {props.isSetMode
-                    ? (props.error && 'Incorrect value!') || 'Enter values and press set'
+                    ? (props.error && 'Incorrect value!') || 'Enter values and press \'set\' '
                     : props.counterValue}
             </div>
     )
