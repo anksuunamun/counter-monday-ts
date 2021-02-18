@@ -2,12 +2,20 @@
     background-color: #ae54d8;
     width: 90%;
     border-radius: 7px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
     color: white;
     font-weight: bold;
-    font-size: 1.5em;
+    font-size: 1.6em;
+    height: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.displayText {
+    font-size: 1em;
+    font-weight: normal;
 }
 
 .displayBlocked {
@@ -19,23 +27,23 @@
     background-color: red;
 }
 
-.settingDisplay {
-
-}
-
 .settingDisplay div {
     font-size: 0.7em;
+    font-weight: normal;
     display: grid;
     grid-template-columns: 3fr 2fr;
+    column-gap: 10px;
 }
 
 .settingDisplay input {
     width: 80px;
     border-radius: 7px;
     border-color: #7e26a6;
+    text-align: center;
+    font-weight: bold;
 }
 
 .settingDisplay input:focus {
     outline: none;
-    border: 5px solid #7e26a6;
+    border: 2px solid #7e26a6;
 }

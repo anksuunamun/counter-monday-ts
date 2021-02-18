@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useEffect} from 'react'
+import React, {ChangeEvent} from 'react'
 import styles from './Display.module.css'
 
 type DisplayPropsType = {
@@ -16,6 +16,7 @@ type DisplayPropsType = {
     setError: (value: boolean) => void
     onMaxChangeHandler?: (value: number) => void
     onStartChangeHandler?: (value: number) => void
+    maxValueForDisplay: number
 }
 
 function Display(props: DisplayPropsType) {
@@ -25,12 +26,9 @@ function Display(props: DisplayPropsType) {
     const onStartChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         props.onStartChangeHandler && props.onStartChangeHandler(Number(e.currentTarget.value))
     }
-    useEffect(() => {
-    }, [props.isSetMode])
-    useEffect(() => {
-    }, [props.error])
 
-    let styling = props.counterValue === props.maxValue ? styles.displayBlocked : ''
+    let styling = props.counterValue === props.maxValueForDisplay ? styles.displayBlocked : ''
+    // let styleForDiv =
     return (
         props.isSetModeDisplay
             ? <div className={`${styles.display} ${styles.settingDisplay}`}>
@@ -51,9 +49,10 @@ function Display(props: DisplayPropsType) {
                                              : ''}/>
                 </div>
             </div>
-            : <div className={`${styles.display} ${styling}`}>
+            : <div
+                className={`${styles.display} ${styling} ${props.isSetMode && styles.displayText} ${props.error ? styles.displayBlocked : ''}`}>
                 {props.isSetMode
-                    ? (props.error && 'Incorrect value!') || 'enter values and press set'
+                    ? (props.error && 'Incorrect value!') || 'Enter values and press set'
                     : props.counterValue}
             </div>
     )

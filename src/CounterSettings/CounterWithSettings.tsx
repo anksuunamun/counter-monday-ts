@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import styles from './CounterWithSettings.module.css';
 import Display from '../Display/Display';
 import Button from '../Button/Button';
@@ -21,9 +21,6 @@ type CounterWithSettingsPropsType = {
 function CounterWithSettings(props: CounterWithSettingsPropsType) {
     const [maxValue, setMaxValue] = useState<number>(props.maxValue)
     const [startValue, setStartValue] = useState<number>(props.startValue)
-
-    useEffect(() => {
-    }, [props.isSetMode])
 
     const onSetClickHandler = () => {
         if (props.isSetMode && !props.error) {
@@ -86,6 +83,7 @@ function CounterWithSettings(props: CounterWithSettingsPropsType) {
                      setError={props.setError}
                      onMaxChangeHandler={onMaxChangeHandler}
                      onStartChangeHandler={onStartChangeHandler}
+                     maxValueForDisplay={props.maxValue}
             />
             <div className={styles.buttonWrapper}>
                 {props.isSetModeDisplay
