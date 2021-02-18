@@ -94,10 +94,10 @@ function CounterWithSettings(props: CounterWithSettingsPropsType) {
                               onClickHandler={onSetClickHandler}/>
                     : <>
                         <Button title={'inc'}
-                                disabled={props.counterValue === props.maxValue}
+                                disabled={props.counterValue === props.maxValue || props.error}
                                 onClickHandler={onIncClickHandler}/>
                         <Button title={'reset'}
-                                disabled={props.counterValue === props.startValue}
+                                disabled={props.counterValue === props.startValue || props.error}
                                 onClickHandler={onResetClickHandler}/>
                     </>
                 }
